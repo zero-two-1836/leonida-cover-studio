@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">LCS</span>
+    <span class="brand-name">Leonida Cover Studio</span>
+  </div>
+  <p class="brand-sub">Your photo and a caption, made into multi-panel GTA-style cover art — exported as a PNG, entirely on your machine.</p>
+  <button class="exportBtn primary" type="button">Export PNG</button>
+</header>
+
+<div class="workspace">
+  <aside class="rail">
+    <section class="card">
+      <h2>Cover text</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" maxlength="42" value="VICE HARVEST">
+      </label>
+      <label class="field">Tagline
+        <input id="taglineInput" type="text" maxlength="60" value="One summer. No way back.">
+      </label>
+      <label class="check"><input id="badgeToggle" type="checkbox" checked> Age badge</label>
+      <label class="check"><input id="barcodeToggle" type="checkbox" checked> Barcode &amp; issue mark</label>
+    </section>
+
+    <section class="card">
+      <h2>Layout</h2>
+      <div id="layoutRow" class="chip-row"></div>
+      <h2>Post size</h2>
+      <div id="sizeRow" class="chip-row"></div>
+    </section>
+
+    <section class="card">
+      <h2>Photos</h2>
+      <div id="photoSlots"></div>
+      <label class="mini-button add-photo">Add your photo
+        <input id="addPhotoInput" type="file" accept="image/*" hidden>
+      </label>
+      <p class="hint">Photos never leave your machine — the studio reads them locally and draws them into the panels.</p>
+    </section>
+
+    <section class="card">
+      <h2>Panel editor</h2>
+      <div id="panelTabs" class="chip-row"></div>
+      <label class="field">Photo in this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label class="field">Colour grade
+        <select id="panelGrade"></select>
+      </label>
+      <label class="field slider">Focus left–right <span id="fxValue"></span>
+        <input id="fxRange" type="range" min="0" max="1" step="0.01">
+      </label>
+      <label class="field slider">Focus up–down <span id="fyValue"></span>
+        <input id="fyRange" type="range" min="0" max="1" step="0.01">
+      </label>
+      <label class="field slider">Zoom <span id="zoomValue"></span>
+        <input id="zoomRange" type="range" min="1" max="2.2" step="0.01">
+      </label>
+      <button id="gradeAllBtn" class="mini-button" type="button">Give every panel this grade</button>
+    </section>
+
+    <section class="card">
+      <h2>Finish</h2>
+      <button class="exportBtn primary wide" type="button">Export PNG</button>
+      <p class="hint">One click writes the cover at full post size — 1080 × 1080, 1080 × 1350 or 1920 × 1080.</p>
+    </section>
+  </aside>
+
+  <main class="stage">
+    <canvas id="coverCanvas" width="1080" height="1350" aria-label="Live preview of your cover"></canvas>
+    <p id="statusLine" role="status"></p>
+  </main>
+</div>
+
+<script type="module" src="./src/studio.js"></script>
+</body>
+</html>
